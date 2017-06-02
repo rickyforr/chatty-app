@@ -2,28 +2,22 @@ import React, {Component} from 'react';
 import Message from './Message.jsx';
 
 class MessageList extends Component {
+componentDidUpdate() {
+  console.log('message list: ', this.props)
+}
 
-  render() {
-    const messages = this.props.messages.map((message, i) => {
-      //console.log(this.props.messages)
-      return (
-        <Message
+render() {
 
-            username={message.username}
-            content={message.content}/>
 
-    )
-  })
-    return (
+return (
+        <main className="messages">
+          {this.props.messages.map((message) =>
+             <Message currentUser={this.props.currentuser.name} message={message} key={message.id} />
+          )}
+        </main>
 
-<main className="messages">
-   { messages }
-  <div className="message system">
-
-  </div>
-</main>
-
-  );
+    );
   }
+
 }
 export default MessageList;

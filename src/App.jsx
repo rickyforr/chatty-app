@@ -17,12 +17,12 @@ constructor(props) {
 
 onNewMessage(content) {
 
-   // creating new message based on text entered in chat bar
-   // when connected to web socket send message data to server
-  // this.ws.send(JSON.stringify(bobMessage))
   const newMessage = JSON.parse(content.data)
-   console.log(content.data)
-  this.setState({messages: this.state.messages.concat(newMessage)})
+
+  console.log('from recieving message: ',  this.state.currentUser.name)
+
+  this.setState({messages: this.state.messages.concat(newMessage), current: this.state.currentUser.name})
+
 
   }
 
@@ -46,11 +46,13 @@ componentDidMount() {
 
 
 onNameChange(user) {
-  console.log('from onNameChange: ', this.ws)
+  console.log('from onNameChange: ', this.state.currentUser.name)
+
+
+  const notification = {type: 'postNotifiction', user: this.state.currentUser.name}
+  // console.log(notification)
+  this.ws.send(JSON.stringify(notification))
   this.setState({currentUser: {name: user}})
-
-  const notification = {type: 'postNotifiction', }
-
 }
 
 
@@ -65,7 +67,7 @@ onNameChange(user) {
 <nav className="navbar">
   <a href="/" className="navbar-brand">Chatty</a>
 </nav>
-<MessageList messages = {this.state.messages} ></MessageList>
+<MessageList messages = {this.state.messages} currentuser = {this.state.currentUser} ></MessageList>
 <ChatBar onMessage={ this.onNewMessage.bind(this)} nameChange={this.onNameChange.bind(this)} sendMessage={this.onSendMessage.bind(this)} messageObj = {this.state} ></ChatBar>
 </div>
 

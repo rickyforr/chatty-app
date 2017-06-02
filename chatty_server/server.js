@@ -26,7 +26,7 @@ console.log('client connected')
     wss.clients.forEach(function each(client) {
 
       const gotMessage = JSON.parse(message)
-      console.log('user: ' + gotMessage.username + ' says: ' + gotMessage.content)
+      console.log(message)
 
       gotMessage.id = uuidV1()
       console.log(gotMessage)

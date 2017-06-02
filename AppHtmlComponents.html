@@ -24,3 +24,14 @@
 </footer>
 </body>
 </html>
+
+
+switch(newMessage.type) {
+    case 'postNotifiction':
+      return (this.setState({messages: this.state.messages.concat(newMessage), current: this.state.currentUser.name}));
+      break;
+    case 'postMessage':
+      return (this.setState({messages: this.state.messages.concat(newMessage), current: this.state.currentUser.name}));
+      break;
+    }
+  }

@@ -18,14 +18,21 @@ const wss = new SocketServer({ server });
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', function connection(ws, req) {
-console.log('client connected')
-  const clientSize = {type: 'clientSize', size: wss.clients.size}
+  console.log('client connected')
+  console.log(wss.clients.size)
 
-  ws.send(JSON.stringify(clientSize))
-  // You might use location.query.access_token to authenticate or share sessions
-  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+  wss.clients.forEach(function each(client) {
+      const clientSize = {type: 'clientSize', size: wss.clients.size}
+      const stringSize = JSON.stringify(clientSize)
+      if (client.readyState === WebSocket.OPEN) {
+      client.send(stringSize);
+      }
+   });
+
+
+
   ws.on('message', function incoming(message) {
-     //ws.send('send data')
+
     wss.clients.forEach(function each(client) {
 
       const gotMessage = JSON.parse(message)
@@ -42,7 +49,16 @@ console.log('client connected')
 
 });
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-  ws.on('close', () => console.log('Client disconnected')
+  ws.on('close', function close() {
+  console.log('disconnected');
 
-    );
+  wss.clients.forEach(function each(client) {
+
+      const clientSize = {type: 'clientSize', size: wss.clients.size}
+      const stringSize = JSON.stringify(clientSize)
+      if (client.readyState === WebSocket.OPEN) {
+      client.send(stringSize);
+      }
+    });
+});
 });

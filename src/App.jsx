@@ -22,9 +22,11 @@ onNewMessage(content) {
   const newMessage = JSON.parse(content.data)
 
   console.log('from recieving message: ',  this.state.clients.size, newMessage.size)
-  this.setState({clients: newMessage.size})
+
   console.log('apps state: ', this.state)
-  $('.client-size').text(this.state.clients + ' chatters online')
+
+
+
   switch(newMessage.type) {
     case 'postNotifiction':
       return (this.setState({messages: this.state.messages.concat(newMessage), current: this.state.currentUser.name}));
@@ -33,9 +35,13 @@ onNewMessage(content) {
       return (this.setState({messages: this.state.messages.concat(newMessage), current: this.state.currentUser.name}));
       break;
     case 'clientSize':
-      return (this.setState({clients: newMessage.size}));
+       console.log('client size')
+      return ( $('.client-size').text(newMessage.size + ' chatters online'));
+      $('.client-size').text(newMessage.size + ' chatters online')
       break;
+
     }
+
   }
 
 

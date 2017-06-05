@@ -35,9 +35,7 @@ onNewMessage(content) {
       return (this.setState({messages: this.state.messages.concat(newMessage), current: this.state.currentUser.name}));
       break;
     case 'clientSize':
-       console.log('client size')
       return ( $('.client-size').text(newMessage.size + ' chatters online'));
-      $('.client-size').text(newMessage.size + ' chatters online')
       break;
 
     }

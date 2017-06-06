@@ -8,13 +8,13 @@ class App extends Component {
 constructor(props) {
     super(props);
     this.state =
-    {
-  currentUser: {name: 'Mike'},
-  messages: [],
-  clients: {size: 1}
-  }
+                 {
+                  currentUser: {name: ''},
+                  messages: [],
+                  clients: {size: 1}
+                 }
 
-  }
+}
 
 
 onNewMessage(content) {

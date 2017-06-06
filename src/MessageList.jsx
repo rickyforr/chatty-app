@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import Message from './Message.jsx';
 
 class MessageList extends Component {
-componentDidUpdate() {
-  console.log('message list: ', this.props)
-}
+
 
 render() {
 

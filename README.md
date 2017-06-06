@@ -1,11 +1,12 @@
-React Boilerplate
+Chatty App
 =====================
 
-A minimal and light dev environment for ReactJS.
+Real time chatt web application like Slack. Using React, Babel, WebPack and WebSockets.
+
 
 ### Usage
 
-Clone the boilerplate and create your own git repo.
+Clone and create your own git repo.
 
 ```
 git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
@@ -20,7 +21,15 @@ Install the dependencies and start the server.
 ```
 npm install
 npm start
-open http://localhost:3000
+if error then run: npm rebuild node-sass
+
+Start Chatty Websocket Server
+=====================
+cd into chatty_server folder
+npm install dependancies
+npm start
+server will run on http://localhost:3000
+clients connect by opening http://localhost:3000
 ```
 
 ### Static Files
@@ -43,3 +52,11 @@ npm run lint
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* uuid (generate unique id's)
+* ws (websocket)
+
+
+
+
+
+

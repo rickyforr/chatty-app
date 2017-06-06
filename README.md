@@ -1,7 +1,7 @@
 Chatty App
 =====================
 
-Real time chatt web application like Slack. Using React, Babel, WebPack and WebSockets.
+Real time chat web application like Slack. Using React, Babel, WebPack and WebSockets.
 
 
 ### Usage

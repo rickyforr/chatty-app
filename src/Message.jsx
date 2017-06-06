@@ -8,7 +8,7 @@ componentDidMount () {
 
     switch(this.props.message.type) {
       case 'postNotifiction':
-        return (<span className="message-content notification">user {this.props.message.user} has changed their name to {this.props.currentUser}</span>);
+        return (<span className="message-content notification">user {this.props.message.user} has changed their name to {this.props.message.newUser}</span>);
         break;
       case 'postMessage':
         return (<span className="message-content error">{this.props.message.content}</span>);

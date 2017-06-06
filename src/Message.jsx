@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 
 class Message extends Component {
-componentDidMount () {
-  console.log('from message: ',  this.props)
-}
-  parseType() {
 
+  parseType() {
+    //create DOM element and display message differently depending on whether it's a notification or a message
     switch(this.props.message.type) {
       case 'postNotifiction':
         return (<span className="message-content notification">user {this.props.message.user} has changed their name to {this.props.message.newUser}</span>);
@@ -13,11 +11,9 @@ componentDidMount () {
       case 'postMessage':
         return (<span className="message-content error">{this.props.message.content}</span>);
         break;
-
-
-
     }
   }
+
   render(){
     return (
       <div className="message">

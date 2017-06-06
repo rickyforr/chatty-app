@@ -17,7 +17,6 @@ const wss = new SocketServer({ server });
 // When a client connects they are assigned a socket, broadcast the amount of clients connected.
 wss.on('connection', function connection(ws, req) {
   console.log('client connected')
-
   wss.clients.forEach(function each(client) {
       const clientSize = {type: 'clientSize', size: wss.clients.size}
       const stringSize = JSON.stringify(clientSize)
@@ -39,14 +38,15 @@ wss.on('connection', function connection(ws, req) {
   });
 // Set up a callback for when a client closes the socket. Broadcast the amount of clients connected.
   ws.on('close', function close() {
-  console.log('client disconnected');
+    console.log('client disconnected');
 
-  wss.clients.forEach(function each(client) {
-      const clientSize = {type: 'clientSize', size: wss.clients.size}
-      const stringSize = JSON.stringify(clientSize)
-      if (client.readyState === WebSocket.OPEN) {
-      client.send(stringSize);
-      }
+    wss.clients.forEach(function each(client) {
+        const clientSize = {type: 'clientSize', size: wss.clients.size}
+        const stringSize = JSON.stringify(clientSize)
+
+        if (client.readyState === WebSocket.OPEN) {
+        client.send(stringSize);
+        }
     });
   });
 });
